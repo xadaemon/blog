@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  
+  <meta http-equiv="content-language" content="en" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  
+  <title>What Is Memory &middot; Blowfish</title>
+  <meta name="title" content="What Is Memory &middot; Blowfish" />
+  
+  
+  <meta name="keywords" content="memory, low-level, programming, C, Assembly, " />
+  
+  
+  <link rel="canonical" href="http://localhost:1313/posts/what-is-memory/" />
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.acf22ebae51de7dc43117d855e8da9ac660f089a5fa4adcc6c0f249682fef36380b4b3ad9007aefe41056c016b611429322f0f19a8fe7c057d77fca3ead97cfe.css"
+    integrity="sha512-rPIuuuUd59xDEX2FXo2prGYPCJpfpK3MbA8kloL&#43;82OAtLOtkAeu/kEFbAFrYRQpMi8PGaj&#43;fAV9d/yj6tl8/g==" />
+  
+  
+  <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
+    integrity="sha512-UWoWdFvqWpvQERONJUzA/TlzzVXObhXz3sdj58fCx0SPj&#43;e1TMqBHLghsMfhLNFhyqzh3XlKw9NNQJN8vMnuEg=="></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script defer type="text/javascript" id="script-bundle" src="/js/main.bundle.min.b36dda9ec4ec11e967fd341e7d57b8c484ac7a39f8f329f7bcf7ce4812569de8607db866a086d4789956ac0b74967e251c9a566d94d469dd28b8787fed4f46f5.js"
+    integrity="sha512-s23ansTsEeln/TQefVe4xISsejn48yn3vPfOSBJWnehgfbhmoIbUeJlWrAt0ln4lHJpWbZTUad0ouHh/7U9G9Q==" data-copy="" data-copied=""></script>
+  
+  
+  <script src="/js/zoom.min.js"></script>
+  
+  
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="http://localhost:1313/posts/what-is-memory/">
+  <meta property="og:site_name" content="Blowfish">
+  <meta property="og:title" content="What Is Memory">
+  <meta property="og:description" content="Memory and pointers for the curious coder… # Memory, what is it really?">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-06-24T18:58:32-03:00">
+    <meta property="article:modified_time" content="2024-06-24T18:58:32-03:00">
+    <meta property="article:tag" content="Memory">
+    <meta property="article:tag" content="Low-Level">
+    <meta property="article:tag" content="Programming">
+    <meta property="article:tag" content="C">
+    <meta property="article:tag" content="Assembly">
+    <meta property="og:image" content="http://localhost:1313/posts/what-is-memory/feature-core-memory.jpg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="http://localhost:1313/posts/what-is-memory/feature-core-memory.jpg">
+  <meta name="twitter:title" content="What Is Memory">
+  <meta name="twitter:description" content="Memory and pointers for the curious coder… # Memory, what is it really?">
+
+  
+  <script type="application/ld+json">
+  [{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "",
+    "name": "What Is Memory",
+    "headline": "What Is Memory",
+    
+    "abstract": "Memory and pointers for the curious coder… # Memory, what is it really?",
+    "inLanguage": "en",
+    "url" : "http:\/\/localhost:1313\/posts\/what-is-memory\/",
+    "author" : {
+      "@type": "Person",
+      "name": ""
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-06-24T18:58:32-03:00",
+    "datePublished": "2024-06-24T18:58:32-03:00",
+    
+    "dateModified": "2024-06-24T18:58:32-03:00",
+    
+    "keywords": ["memory","low-level","programming","C","Assembly"],
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "1558"
+  }]
+  </script>
+
+
+  
+  
+  
+  
+  
+
+<script src="/lib/jquery/jquery.slim.min.js" integrity=""></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+  
+  <meta name="theme-color"/>
+  
+  
+</head>
+<body
+  class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
+  <div id="the-top" class="absolute flex self-center">
+    <a class="px-3 py-1 text-sm -translate-y-8 rounded-b-lg bg-primary-200 focus:translate-y-0 dark:bg-neutral-600"
+      href="#main-content"><span
+        class="font-bold text-primary-600 ltr:pr-2 rtl:pl-2 dark:text-primary-400">&darr;</span>Skip to main content</a>
+  </div>
+  
+  
+  <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
+    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+    
+    <div class="flex flex-1 items-center justify-between">
+        <nav class="flex space-x-3">
+
+            
+            <a href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">Blowfish</a>
+            
+
+        </nav>
+        <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
+
+            
+            
+            
+  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        Blog
+    </p>
+</a>
+
+
+
+            
+            
+
+            
+
+
+            
+            <button id="search-button" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+
+            
+            
+            <div
+                class="ltr:mr-14 rtl:ml-14 flex items-center">
+                <button id="appearance-switcher" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400">
+                    <div class="flex items-center justify-center dark:hidden">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                    </div>
+                    <div class="items-center justify-center hidden dark:flex">
+                        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                    </div>
+                </button>
+            </div>
+            
+
+        </nav>
+        <div class="flex md:hidden items-center space-x-5 md:ml-12 h-12">
+
+            <span></span>
+
+            
+
+
+            
+            <button id="search-button-mobile" aria-label="Search" class="text-base hover:text-primary-600 dark:hover:text-primary-400"
+                title="">
+                
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+            </button>
+            
+
+            
+            
+            <button id="appearance-switcher-mobile" aria-label="Dark mode switcher" type="button" class="text-base hover:text-primary-600 dark:hover:text-primary-400" style="margin-right:5px">
+                <div class="flex items-center justify-center dark:hidden">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+  </span>
+
+
+                </div>
+                <div class="items-center justify-center hidden dark:flex">
+                    
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+  </span>
+
+
+                </div>
+            </button>
+            
+
+        </div>
+    </div>
+    <div class="-my-2 -mr-2 md:hidden">
+
+        <label id="menu-button" for="menu-controller" class="block">
+            <input type="checkbox" id="menu-controller" class="hidden" />
+            
+            <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
+                
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+  </span>
+
+
+            </div>
+            <div id="menu-wrapper" style="padding-top:5px;"
+                class="fixed inset-0 z-30 invisible w-screen h-screen m-0 overflow-auto transition-opacity opacity-0 cursor-default bg-neutral-100/50 backdrop-blur-sm dark:bg-neutral-900/50">
+                <ul
+                    class="flex space-y-2 mt-3 flex-col items-end w-full px-6 py-6 mx-auto overflow-visible list-none ltr:text-right rtl:text-left max-w-7xl">
+
+                    <li>
+                        <span
+                            class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+</span>
+                    </li>
+
+                    
+
+                    
+  <li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-bg font-bg" title="">
+            Blog
+        </p>
+    </a>
+</li>
+
+
+
+
+                    
+
+                </ul>
+                
+                
+
+            </div>
+        </label>
+    </div>
+</div>
+
+
+
+
+
+  
+  <div class="relative flex flex-col grow">
+    <main id="main-content" class="grow">
+      
+
+
+<article>
+  
+
+  <header id="single_header" class="mt-5 max-w-prose">
+    
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      What Is Memory
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-06-24 18:58:32 -0300 -03">24 June 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1558 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">8 mins</span>
+  
+
+  
+  
+  <span class="pl-2"><span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Draft
+  </span>
+</span></span>
+  
+</div>
+
+
+
+
+
+
+
+    </div>
+
+    
+    
+    
+    
+    
+
+    
+
+    
+      
+      
+        
+        
+<div class="flex author">
+  
+  <div class="place-self-center">
+    
+    
+    <div class="text-2xl sm:text-lg">
+</div>
+  </div>
+</div>
+
+      
+
+      
+
+      
+      <div class="mb-5"></div>
+      
+
+    
+
+  </header>
+  
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit">
+        
+        
+
+
+        <div class="article-content max-w-prose mb-20">
+          
+
+<h1 class="relative group">Memory and pointers for the curious coder… 
+    <div id="memory-and-pointers-for-the-curious-coder" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#memory-and-pointers-for-the-curious-coder" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">Memory, what is it really? 
+    <div id="memory-what-is-it-really" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#memory-what-is-it-really" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>Most programmers have a view of memory as a list of “things” these “things” might be whatever you are working with in your code, and for most purposes that view is fine, but if you want to really understand what is all those terms read on!</p>
+
+
+<h2 class="relative group">What I assume you know 
+    <div id="what-i-assume-you-know" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#what-i-assume-you-know" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This article will assume you know programming, more than a simple hello world, but not much beyond flow control and arrays.</p>
+<p>For this article I will use C and gas syntax in intel mode (fancy way of saying it has a logical operands order) x86_64 assembly, don’t worry if that sounds scary, all the code examples will be commented to explain what they are doing.</p>
+<p>I also assume you know about binary and hexadecimal notation, if you are not sure, check these:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Hexadecimal" target="_blank">https://en.wikipedia.org/wiki/Hexadecimal</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Binary_number" target="_blank">https://en.wikipedia.org/wiki/Binary_number</a></li>
+</ul>
+<p>If you care, all code was compiled in GCC 14.1 using the command:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ gcc -c <span class="nv">$FILE</span> -Wall -Wpedantic -Werror
+</span></span></code></pre></div><p>Check <a href="#further-reading">Further reading</a> at the end of the page for more useful links.</p>
+
+
+<h1 class="relative group">Pointers, bytes and Turing machines 
+    <div id="pointers-bytes-and-turing-machines" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#pointers-bytes-and-turing-machines" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+
+
+<h2 class="relative group">Turing machines and memory 
+    <div id="turing-machines-and-memory" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#turing-machines-and-memory" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>I you are familiar with the concept of a Turing machine, it helps to imagine the RAM as the machine’s tape, if you don’t, here’s a brief summary.</p>
+<p>A Turing machine is a theoretical machine devised by <a href="https://en.wikipedia.org/wiki/Alan_Turing" target="_blank">Alan Turing</a>, the idea is that this is a machine that has a tape of unlimited length, this tape is divided into cells, such cells can hold a symbol from a finite alphabet of symbols it can write to and read from  each cell, and a finite number of states, it also has a head that at any point in time is over a cell in that tape, it will read the cell’s contents and based on the machine’s current state and the read symbol it will move the head left, right or halt the whole machine. Despite simple this machine is what we refer to as <code>Turing complete</code> meaning it can implement and run any algorithm that a computer can.</p>
+<p>Memory in this context is that tape, with the difference that in the real world it’s finite, long but finite, however the RA in RAM stands for Random Access, this just means that if the computer wants to look at the cell at the very end of memory it can get that value directly instead of reading the whole tape to get there. The cells in this tape hold a byte each, in this article we will assume the byte is the smallest addressable unit, while that might not be true for all computers it works for this.</p>
+
+
+<h1 class="relative group">If everything is bytes, what are types? 
+    <div id="if-everything-is-bytes-what-are-types" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#if-everything-is-bytes-what-are-types" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>Types are an abstraction, something that exists in the source code solely for the benefit of the humans looking at it and the compiler making machine code out of it. A <code>struct</code> in C is merely a wrapping over a span of memory so the compiler knows the offsets to the “fields” and since it knows their types, it also knows how wide they are. This also means that if there’s some data in RAM, and you know its structure, you can cast a pointer to the start of that structure to a pointer to a struct in C. Now, magically, you have a struct of that type!</p>
+<p>In short, only the compiler and you care about types, the hardware does not! It has different instructions for different widths of numbers, and that is why CPUs care about the width of the numbers, but that is the closest it gets to caring about types. Oh, and pointers, it cares if a value is a pointer or a value.</p>
+
+
+<h2 class="relative group">Pointers 
+    <div id="pointers" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#pointers" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>So with that in mind, what is a pointer? You might have heard of pointers as scary complex things that cause bugs and pain to developers, but a pointer is nothing more than taking a number like <code>10000</code> and saying: Hey computer, this is an address into memory (that tape from before), look at that please!, you can then tell the computer to grab the number in that address, or put a number there, this is what we call a pointer dereferencing operation, because it takes the or places a value at the location r<strong>eferenced</strong> by the pointer, as simple as that!</p>
+<p>Example code in C:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">sum_a_b_result_in_b</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// if we do instead: b = a + b the compiler complains
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="o">*</span><span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">sum_a_b_result_in_b</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">sum_a_b_result_in_b</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// if we do instead: b = a + b the compiler complains
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">sum_a_b_result_in_b</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">Why we count arrays from 0? 
+    <div id="why-we-count-arrays-from-0" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#why-we-count-arrays-from-0" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>Have you ever asked yourself why, with very few exceptions arrays start at 0? Spoiler: It has to do with pointers.</p>
+<p>For this let’s define an array, from the low level programmer’s point of view everything can be seen as being: bytes, pointers or a contiguous runs of bytes (span), an array is a span, an array in most compiled languages (with some variation as to how they store their length information) is a pointer, and the nice thing with pointers is, they are just a number that the computer is told to treat as an address in RAM, this means you can do maths on them!</p>
+<p>Lets start with basics:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-s" data-lang="s"><span class="line"><span class="cl"><span class="n">some_array</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="m">.8</span><span class="n">byte</span> <span class="m">10</span> <span class="p">;</span> <span class="n">This</span> <span class="n">allocates</span> <span class="m">10</span><span class="o">*</span><span class="m">8</span> <span class="n">bytes</span> <span class="n">of</span> <span class="n">memory</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">save_rdi</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl"><span class="n">mov</span> <span class="n">r8</span><span class="p">,</span> <span class="n">[some_array</span> <span class="o">+</span> <span class="m">8</span> <span class="o">*</span> <span class="m">8</span><span class="n">]</span> <span class="p">;</span> <span class="n">This</span> <span class="n">is</span> <span class="n">a</span> <span class="n">pointer</span> <span class="kr">in</span> <span class="n">assembly</span><span class="p">,</span> <span class="n">this</span> <span class="n">will</span> <span class="n">save</span> <span class="n">r8</span> <span class="kr">in</span> <span class="n">some_array[8]</span>
+</span></span><span class="line"><span class="cl"><span class="n">mov</span> <span class="n">r9</span><span class="p">,</span> <span class="n">[some_array]</span> <span class="p">;</span> <span class="n">This</span> <span class="n">is</span> <span class="n">equivalent</span> <span class="n">of</span> <span class="n">saying</span> <span class="n">some_array</span> <span class="o">+</span> <span class="m">0</span> <span class="o">*</span> <span class="m">8</span>
+</span></span></code></pre></div><p>Based on the code above, you can then see that when we index into lists in programming, when you write <code>some_array[0]</code> ,<code>some_array[1]</code> or <code>some_array[i] where i is an integer</code> you are in effect saying the same as <code>*(some_array + i * sizeof(type))</code> , now if you never had to worry about memory before, you might be asking, what do you mean <code>sizeof(type)</code>?</p>
+<p>Well, it just so happens that since the byte is the smallest addressable unit, pointers hold the address of an individual byte, this is fine if your number is a byte, however since one byte can only hold 256 distinct values <code>0 to (2^8) - 1</code> any numbers larger than that need multiple bytes to be stored, so if you are given a pointer to some data that’s all the same  type and thus each item in that sequence is the same width in their span, then you have yourself an array, even if no one says it’s an array, you can tell the C compiler, hey this is a pointer of type <code>x</code> , the compiler will then be helpful and as long as it can determine the width of the span of a single value of type <code>x</code> it will allow you to write <code>some_x_pointer[i]</code> which becomes <code>*(some_x_pointer + i)</code> which further boils down to:</p>
+<p><code>*((byte *)some_x_pointer + i * sizeof(x))</code></p>
+<p>So in code:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="cm">/**
+</span></span></span><span class="line"><span class="cl"><span class="cm">8 bytes in most compilers */</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">extern</span> <span class="n">x</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="nf">sum_x_array</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">x</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sum</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>This compiles down to this assembly:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-s" data-lang="s"><span class="line"><span class="cl"><span class="n">sum_x_array</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">push</span>    <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rbp</span><span class="p">,</span> <span class="n">rsp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-24</span><span class="n">]</span><span class="p">,</span> <span class="n">rdi</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-8</span><span class="n">]</span><span class="p">,</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-12</span><span class="n">]</span><span class="p">,</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jmp</span>     <span class="n">.L2</span>
+</span></span><span class="line"><span class="cl"><span class="n">.L3</span><span class="o">:</span> <span class="p">;</span> <span class="n">This</span> <span class="n">whole</span> <span class="n">block</span> <span class="n">is</span> <span class="n">roughly</span> <span class="n">the</span> <span class="n">body</span> <span class="n">of</span> <span class="n">the</span> <span class="kr">for</span> <span class="n">loop</span> <span class="kr">in</span> <span class="n">the</span> <span class="n">C</span> <span class="n">code</span> <span class="n">above</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">eax</span><span class="p">,</span> <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-12</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cdqe</span>
+</span></span><span class="line"><span class="cl">        <span class="n">lea</span>     <span class="n">rdx</span><span class="p">,</span> <span class="n">[0</span><span class="o">+</span><span class="n">rax</span><span class="o">*</span><span class="m">8</span><span class="n">]</span> <span class="p">;</span> <span class="n">rax</span> <span class="n">here</span> <span class="n">is</span> <span class="n">holding</span> <span class="n">the</span> <span class="n">address</span> <span class="n">of</span> <span class="n">arr</span> <span class="kr">in</span> <span class="n">the</span> <span class="kr">function</span> <span class="n">above</span>
+</span></span><span class="line"><span class="cl">												       <span class="p">;</span> <span class="n">and</span> <span class="n">as</span> <span class="n">I</span> <span class="n">explained</span> <span class="n">the</span> <span class="n">compiler</span> <span class="n">boiled</span> <span class="n">it</span> <span class="n">down</span> <span class="n">into</span> 
+</span></span><span class="line"><span class="cl">												       <span class="p">;</span> <span class="o">*</span><span class="p">((</span><span class="n">byte</span> <span class="o">*</span><span class="p">)</span><span class="n">some_x_pointer</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="nf">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">												       <span class="p">;</span> <span class="n">which</span> <span class="n">is</span> <span class="o">*</span><span class="p">(</span><span class="n">rax</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="m">8</span><span class="p">)</span> <span class="n">where</span> <span class="m">8</span> <span class="n">is</span> <span class="nf">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rax</span><span class="p">,</span> <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-24</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">add</span>     <span class="n">rax</span><span class="p">,</span> <span class="n">rdx</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rax</span><span class="p">,</span> <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rax]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">add</span>     <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-8</span><span class="n">]</span><span class="p">,</span> <span class="n">rax</span>
+</span></span><span class="line"><span class="cl">        <span class="n">add</span>     <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-12</span><span class="n">]</span><span class="p">,</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="n">.L2</span><span class="o">:</span> <span class="p">;</span> <span class="n">This</span> <span class="n">is</span> <span class="n">the</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="m">10</span> <span class="n">part</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cmp</span>     <span class="n">DWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-12</span><span class="n">]</span><span class="p">,</span> <span class="m">9</span> <span class="p">;</span> <span class="n">note</span> <span class="n">how</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="m">10</span> <span class="n">becomes</span> <span class="n">compare</span> <span class="n">i</span> <span class="n">to</span> <span class="m">9</span>
+</span></span><span class="line"><span class="cl">        <span class="n">jle</span>     <span class="n">.L3</span> <span class="p">;</span> <span class="n">and</span> <span class="kr">while</span> <span class="n">it</span> <span class="n">is</span> <span class="n">less</span> <span class="n">than</span> <span class="n">or</span> <span class="n">equal</span> <span class="n">to</span> <span class="m">9</span><span class="p">,</span> <span class="n">jumb</span> <span class="n">back</span> <span class="n">to</span> <span class="n">the</span> <span class="n">loop</span> <span class="n">body</span>
+</span></span><span class="line"><span class="cl">        <span class="n">mov</span>     <span class="n">rax</span><span class="p">,</span> <span class="n">QWORD</span> <span class="n">PTR</span> <span class="n">[rbp</span><span class="m">-8</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pop</span>     <span class="n">rbp</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ret</span>
+</span></span></code></pre></div>
+
+<h1 class="relative group">Conclusion 
+    <div id="conclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#conclusion" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>This article hopefully helped clear up some of the mysteries of memory and low level programming, these dark arts, that seem so inaccessible, to all but the most experienced grey bearded wizards or the sorcerers like the iconic Margaret Hamilton (seen bellow).</p>
+<p>
+    <figure>
+      <img
+        class="my-0 rounded-md"
+        loading="lazy"
+        srcset="
+        /posts/what-is-memory/magaret-hamilton_hu5ba0ee3ada63679a8b52694ca7af7b38_189746_330x0_resize_q75_box.jpg 330w,
+        /posts/what-is-memory/magaret-hamilton_hu5ba0ee3ada63679a8b52694ca7af7b38_189746_660x0_resize_q75_box.jpg 660w,
+        /posts/what-is-memory/magaret-hamilton_hu5ba0ee3ada63679a8b52694ca7af7b38_189746_1024x0_resize_q75_box.jpg 1024w,
+        /posts/what-is-memory/magaret-hamilton_hu5ba0ee3ada63679a8b52694ca7af7b38_189746_1320x0_resize_q75_box.jpg 2x"
+        src="/posts/what-is-memory/magaret-hamilton_hu5ba0ee3ada63679a8b52694ca7af7b38_189746_660x0_resize_q75_box.jpg"
+        alt="Margaret Hamilton in 1969, standing next to listings of the software she and her MIT team produced for the Apollo project, public domain[1]."
+      />
+      
+    </figure>
+</p>
+<p>Margaret Hamilton in 1969, standing next to listings of the software she and her MIT team produced for the Apollo project, public domain[1].</p>
+
+
+<h1 class="relative group">Next up 
+    <div id="next-up" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#next-up" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<p>Soon I plan to release another article about numeric bases and some other in depth more math heavy details on that aspect. Also some bit manipulation dark arts can be talked about.</p>
+<p>If there’s demand I can talk about how a CPU works and how one can be emulated in software!</p>
+
+
+<h1 class="relative group">Further reading 
+    <div id="further-reading" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#further-reading" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<ol>
+<li><a href="https://www.encyclopediaofmath.org/index.php?title=Turing_machine" target="_blank">https://www.encyclopediaofmath.org/index.php?title=Turing_machine</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Turing_machine" target="_blank">https://en.wikipedia.org/wiki/Turing_machine</a></li>
+</ol>
+
+
+<h1 class="relative group">Image credits 
+    <div id="image-credits" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#image-credits" aria-label="Anchor">#</a>
+    </span>        
+    
+</h1>
+<ul>
+<li><a href="https://commons.wikimedia.org/wiki/File:Margaret_Hamilton_-_restoration.jpg?uselang=en#Licensing" target="_blank">https://commons.wikimedia.org/wiki/File:Margaret_Hamilton_-_restoration.jpg?uselang=en#Licensing</a></li>
+<li><a href="https://commons.wikimedia.org/wiki/File:KL_CoreMemory.jpg#Licensing" target="_blank">https://commons.wikimedia.org/wiki/File:KL_CoreMemory.jpg#Licensing</a></li>
+</ul>
+
+        </div>
+        
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\/what-is-memory\/index.md"
+        var oid_likes = "likes_posts\/what-is-memory\/index.md"
+      </script>
+      
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
+    
+  
+
+
+    
+  </footer>
+</article>
+
+      <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
+  <a href="#the-top"
+    class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+    aria-label="Scroll to top" title="Scroll to top">
+    &uarr;
+  </a>
+</div>
+    </main><footer id="site-footer" class="py-10 print:hidden">
+  
+  
+    
+    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
+      <ul class="flex flex-col list-none sm:flex-row">
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
+            title="">
+            
+            Tags
+          </a>
+        </li>
+        
+        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
+          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/categories/"
+            title="">
+            
+            Categories
+          </a>
+        </li>
+        
+      </ul>
+    </nav>
+    
+  
+  <div class="flex items-center justify-between">
+
+    
+    
+    <p class="text-sm text-neutral-500 dark:text-neutral-400">
+      &copy;
+      2024
+      
+    </p>
+    
+
+    
+    
+    <p class="text-xs text-neutral-500 dark:text-neutral-400">
+      
+      
+      Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+        href="https://blowfish.page/" target="_blank" rel="noopener noreferrer">Blowfish</a>
+    </p>
+    
+
+  </div>
+  <script>
+    
+    mediumZoom(document.querySelectorAll("img:not(.nozoom)"), {
+      margin: 24,
+      background: 'rgba(0,0,0,0.5)',
+      scrollOffset: 0,
+    })
+    
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/process.min.ee03488f19c93c2efb199e2e3014ea5f3cb2ce7d45154adb3399a158cac27ca52831db249ede5bb602700ef87eb02434139de0858af1818ab0fb4182472204a4.js" integrity="sha512-7gNIjxnJPC77GZ4uMBTqXzyyzn1FFUrbM5mhWMrCfKUoMdsknt5btgJwDvh&#43;sCQ0E53ghYrxgYqw&#43;0GCRyIEpA=="></script>
+  
+  
+</footer>
+<div
+  id="search-wrapper"
+  class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
+  data-url="http://localhost:1313/"
+  style="z-index:500"
+>
+  <div
+    id="search-modal"
+    class="flex flex-col w-full max-w-3xl min-h-0 mx-auto border rounded-md shadow-lg top-20 border-neutral-200 bg-neutral dark:border-neutral-700 dark:bg-neutral-800"
+  >
+    <header class="relative z-10 flex items-center justify-between flex-none px-2">
+      <form class="flex items-center flex-auto min-w-0">
+        <div class="flex items-center justify-center w-8 h-8 text-neutral-400">
+          
+
+  <span class="relative block icon">
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+  </span>
+
+
+        </div>
+        <input
+          type="search"
+          id="search-query"
+          class="flex flex-auto h-12 mx-1 bg-transparent appearance-none focus:outline-dotted focus:outline-2 focus:outline-transparent"
+          placeholder="Search"
+          tabindex="0"
+        />
+      </form>
+      <button
+        id="close-search-button"
+        class="flex items-center justify-center w-8 h-8 text-neutral-700 hover:text-primary-600 dark:text-neutral dark:hover:text-primary-400"
+        title="Close (Esc)"
+      >
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+  </span>
+
+
+      </button>
+    </header>
+    <section class="flex-auto px-2 overflow-auto">
+      <ul id="search-results">
+        
+      </ul>
+    </section>
+  </div>
+</div>
+
+  </div>
+</body>
+
+</html>

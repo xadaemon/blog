@@ -1,70 +1,107 @@
-# -- Site Configuration --
-# Refer to the theme docs for more details about each of these parameters.
-# https://blowfish.page/docs/getting-started/
+# theme = "terminal" # UNCOMMENT THIS LINE
+baseURL = "https://xadaemon.srht.site"
+baseurl = "/"
+languageCode = "en-us"
+# Add it only if you keep the theme in the `themes` directory.
+# Remove it if you use the theme as a remote Hugo Module.
+pagination.pagerSize = 5
 
-theme = "blowfish" # UNCOMMENT THIS LINE
-baseURL = "https://xadaemon.com"
-defaultContentLanguage = "en"
-languageCode = "en"
+# Required for Chroma and the custom syntax highlighting.
+[markup.highlight]
+  noClasses = false
 
-title = "xadaemon"
+[markup.goldmark.renderer]
+  unsafe = true
 
-# pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
+[params]
+  # dir name of your main content (default is `content/posts`).
+  # the list of set content will show up on your index page (baseurl).
+  contentTypeName = "posts"
 
-enableRobotsTXT = true
-paginate = 10
-summaryLength = 0
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 2
 
-buildDrafts = false
-buildFuture = false
+  # show selector to switch language
+  showLanguageSelector = false
 
-enableEmoji = true
+  # set theme to full screen width
+  fullWidthTheme = false
 
-# googleAnalytics = "G-XXXXXXXXX"
+  # center theme with default width
+  centerTheme = true 
 
-[imaging]
-  anchor = 'Center'
+  # if your resource directory contains an image called `cover.(jpg|png|webp)`,
+  # then the file will be used as a cover automatically.
+  # With this option you don't have to put the `cover` param in a front-matter.
+  autoCover = true
 
-[taxonomies]
-  tag = "tags"
-  category = "categories"
-  author = "authors"
-  series = "series"
+  # set post to show the last updated
+  # If you use git, you can set `enableGitInfo` to `true` and then post will automatically get the last updated
+  showLastUpdated = true
+  enableGitInfo = true
 
-[sitemap]
-  changefreq = 'daily'
-  filename = 'sitemap.xml'
-  priority = 0.5
+  # Provide a string as a prefix for the last update date. By default, it looks like this: 2020-xx-xx [Updated: 2020-xx-xx] :: Author
+  # updatedDatePrefix = "Updated"
 
-[outputs]
-  home = ["HTML", "RSS", "JSON"]
+  # whether to show a page's estimated reading time
+  readingTime = false # default
 
-[related]
-  threshold = 0
-  toLower = false
+  # whether to show a table of contents
+  # can be overridden in a page's front-matter
+  Toc = false # default
 
-    [[related.indices]]
-        name = "tags"
-        weight = 100
+  # set title for the table of contents
+  # can be overridden in a page's front-matter
+  TocTitle = "Table of Contents" # default
 
-    [[related.indices]]
-        name = "categories"
-        weight = 100
+  # Set date/time format for posts
+  # This will impact the date/time displayed on
+  # index.html, the posts list page, and on posts themselves
+  # This value can also be configured per-post on front matter
+  # If you have any issues with the timezone rendering differently
+  # than you expected, please ensure your timezone is correctly set
+  # on your server.
+  # This value can be customized according to Hugo documentation:
+  # https://gohugo.io/functions/time/format/
+  # Default value (no changes needed):
+  # dateFormat = "2006-01-02"
+  # Example format, with date, time, and timezone abbreviation:
+  # dateFormat = "2006-01-02 3:04:06 PM MST"
 
-    [[related.indices]]
-        name = "series"
-        weight = 50
+[languages]
+  [languages.en]
+    languageName = "English"
+    title = "Xadaemon's blog"
 
-    [[related.indices]]
-        name = "authors"
-        weight = 20
+    [languages.en.params]
+      subtitle = "My personal site"
+      owner = "Xadaemon"
+      keywords = "programming,cats"
+      copyright = "Copyright (c) Xadaemon 2025, all rights reserved"
+      menuMore = "Show more"
+      readMore = "Read more"
+      readOtherPosts = "Read other posts"
+      newerPosts = "Newer posts"
+      olderPosts = "Older posts"
+      missingContentMessage = "Page not found..."
+      missingBackButtonLabel = "Back to home page"
+      minuteReadingTime = "min read"
+      words = "words"
 
-    [[related.indices]]
-        name = "date"
-        weight = 10
+      [languages.en.params.logo]
+        logoText = "Xmn blog"
+        logoHomeLink = "/"
 
-    [[related.indices]]
-      applyFilter = false
-      name = 'fragmentrefs'
-      type = 'fragments'
-      weight = 10
+      [languages.en.menu]
+        [[languages.en.menu.main]]
+          identifier = "about"
+          name = "About"
+          url = "/about"
+
+[module]
+  # In case you would like to make changes to the theme and keep it locally in you repository,
+  # uncomment the line below (and correct the local path if necessary).
+  # --
+  # replacements = "github.com/panr/hugo-theme-terminal/v4 -> themes/terminal"
+[[module.imports]]
+  path = 'github.com/panr/hugo-theme-terminal/v4'

@@ -1,9 +1,10 @@
 +++
 title = "What Is Memory"
-date = 2024-06-24T18:58:32-03:00
-draft = true
+date = "2024-06-24"
+lastmod = "2025-07-05"
+draft = false
 tags = ["memory", "low-level", "programming", "C", "Assembly"]
-categories = "programming"
+layout = "post"
 +++
 
 # Memory and pointers for the curious coder…
@@ -42,13 +43,35 @@ Memory in this context is that tape, with the difference that in the real world 
 
 # If everything is bytes, what are types?
 
-Types are an abstraction, something that exists in the source code solely for the benefit of the humans looking at it and the compiler making machine code out of it. A `struct` in C is merely a wrapping over a span of memory so the compiler knows the offsets to the “fields” and since it knows their types, it also knows how wide they are. This also means that if there’s some data in RAM, and you know its structure, you can cast a pointer to the start of that structure to a pointer to a struct in C. Now, magically, you have a struct of that type!
+Types are an abstraction, something that exists in the source code solely for the benefit of the humans looking at it and the compiler making machine code out of it.
+A `struct` in C is merely a wrapping over a span of memory so the compiler knows the offsets to the “fields” and since it knows their types, it also knows how
+wide they are. This also means that if there’s some data in RAM, and you know its structure, you can cast a pointer to the start of that structure to a pointer
+to a struct in C. If your code was the one that produced that structure in ram or you know the padding and alignment of the structure and repsent it in C
+properly, now you have a valid struct from that pointer.
+
+### Simple example of alignment and size in relation to padding:
+```c
+#include <stdint.h>
+#include <stdalign.h>
+#include <stdio.h>
+
+struct test{ // size 16 align 8
+        uint32_t d; // this requires 4 bytes of padding to keep the 8 alignment
+        uint64_t e;
+};
+
+int main(void){
+        printf("%lu %lu\n", sizeof(struct test), alignof(struct test));
+        return 0;
+}
+```
+[Run on godbolt](https://godbolt.org/z/fzshrGvd4)
 
 In short, only the compiler and you care about types, the hardware does not! It has different instructions for different widths of numbers, and that is why CPUs care about the width of the numbers, but that is the closest it gets to caring about types. Oh, and pointers, it cares if a value is a pointer or a value.
 
 ## Pointers
 
-So with that in mind, what is a pointer? You might have heard of pointers as scary complex things that cause bugs and pain to developers, but a pointer is nothing more than taking a number like `10000` and saying: Hey computer, this is an address into memory (that tape from before), look at that please!, you can then tell the computer to grab the number in that address, or put a number there, this is what we call a pointer dereferencing operation, because it takes the or places a value at the location r**eferenced** by the pointer, as simple as that!
+So with that in mind, what is a pointer? You might have heard of pointers as scary complex things that cause bugs and pain to developers, but a pointer is nothing more than taking a number like `10000` and saying: Hey computer, this is an address into memory (that tape from before), look at that please!, you can then tell the computer to grab the number in that address, or put a number there, this is what we call a pointer dereferencing operation, because it takes the or places a value at the location **referenced** by the pointer, as simple as that!
 
 Example code in C:
 

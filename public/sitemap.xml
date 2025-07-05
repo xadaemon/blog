@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
   <url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2024-06-24T18:58:32-03:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2024-06-24T18:58:32-03:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/posts/what-is-memory/</loc>
-    <lastmod>2024-06-24T18:58:32-03:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://localhost:1313/about/</loc>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
+    <loc>https://xadaemon.srht.site/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/assembly/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/c/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/low-level/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/memory/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/posts/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/programming/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/tags/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/posts/what-is-memory/</loc>
+    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://xadaemon.srht.site/about/</loc>
+  </url><url>
+    <loc>https://xadaemon.srht.site/categories/</loc>
   </url>
 </urlset>

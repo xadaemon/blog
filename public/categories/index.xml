@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Blowfish</title>
-    <link>http://localhost:1313/categories/</link>
-    <description>Recent content in Categories on Blowfish</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Categories on Xadaemon&#39;s blog</title>
+    <link>https://xadaemon.srht.site/categories/</link>
+    <description>Recent content in Categories on Xadaemon&#39;s blog</description>
+    <generator>Hugo</generator>
     <language>en</language>
-    <copyright>© 2024 </copyright>
-    <lastBuildDate>Mon, 24 Jun 2024 18:58:32 -0300</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Programming</title>
-      <link>http://localhost:1313/categories/programming/</link>
-      <pubDate>Mon, 24 Jun 2024 18:58:32 -0300</pubDate>
-      
-      <guid>http://localhost:1313/categories/programming/</guid>
-      <description></description>
-      
-    </item>
-    
+    <atom:link href="https://xadaemon.srht.site/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

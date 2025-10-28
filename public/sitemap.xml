@@ -2,35 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://xadaemon.srht.site/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/first-principles/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/fundamentals/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/programming/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/programming-from-first-principles/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-10-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/assembly/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xadaemon.srht.site/tags/assembly/</loc>
+    <loc>http://localhost:1313/tags/c/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xadaemon.srht.site/tags/c/</loc>
+    <loc>http://localhost:1313/tags/low-level/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xadaemon.srht.site/tags/low-level/</loc>
+    <loc>http://localhost:1313/tags/memory/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xadaemon.srht.site/tags/memory/</loc>
+    <loc>http://localhost:1313/posts/what-is-memory/</loc>
     <lastmod>2025-07-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://xadaemon.srht.site/posts/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/about/</loc>
   </url><url>
-    <loc>https://xadaemon.srht.site/tags/programming/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xadaemon.srht.site/tags/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xadaemon.srht.site/posts/what-is-memory/</loc>
-    <lastmod>2025-07-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://xadaemon.srht.site/about/</loc>
-  </url><url>
-    <loc>https://xadaemon.srht.site/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>

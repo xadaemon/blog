@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  
+    <title>Programming from first principles :: Xadaemon&#39;s blog</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="So you want to learn programming on a deeper level How about learning it at a deeper level? Come with me and learn why programming languages exist, how the most famous ones compare and how we know what our computers can and cannot do.
+What you should already know I wrote this from a presumption that you know no programming or know very little, but that you know your maths somewhat well, you should know what a variable is, and your basic arithmetic. If you know programming read on as this might be enlightening for you too.
+" />
+<meta name="keywords" content="programming,cats" />
+
+  <meta name="robots" content="noodp" />
+
+<link rel="canonical" href="http://localhost:1313/posts/programming-from-first-principles/" />
+
+
+
+
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/buttons.min.86f6b4c106b6c6eb690ae5203d36b442c1f66f718ff4e8164fa86cf6c61ad641.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/code.min.d529ea4b2fb8d34328d7d31afc5466d5f7bc2f0bc9abdd98b69385335d7baee4.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/fonts.min.5bb7ed13e1d00d8ff39ea84af26737007eb5051b157b86fc24487c94f3dc8bbe.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/footer.min.eb8dfc2c6a7eafa36cd3ba92d63e69e849e2200e0002a228d137f236b09ecd75.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/gist.min.a751e8b0abe1ba8bc53ced52a38b19d8950fe78ca29454ea8c2595cf26aad5c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/header.min.75c7eb0e2872d95ff48109c6647d0223a38db52e2561dd87966eb5fc7c6bdac6.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/main.min.36833afd348409fc6c3d09d0897c5833d9d5bf1ff31f5e60ea3ee42ce2b1268c.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/menu.min.3c17467ebeb3d38663dce68f71f519901124fa5cbb4519b2fb0667a21e9aca39.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/pagination.min.bbb986dbce00a5ce5aca0504b7925fc1c581992a4bf57f163e5d69cc1db7d836.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/post.min.e6dddd258e64c83e05cec0cd49c05216742d42fc8ecbfbe6b67083412b609bd3.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/syntax.min.a0773cce9310cb6d8ed23e50f005448facf29a53001b57e038828daa466b25c0.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terminal.min.e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css">
+
+  
+  <link rel="stylesheet" href="http://localhost:1313/css/terms.min.b81791663c3790e738e571cdbf802312390d30e4b1d8dc9d814a5b5454d0ac11.css">
+
+
+<link rel="stylesheet" href="http://localhost:1313/terminal.css">
+
+
+
+
+<link rel="shortcut icon" href="http://localhost:1313/favicon.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+
+
+<meta name="twitter:card" content="summary" />
+
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Programming from first principles">
+<meta property="og:description" content="So you want to learn programming on a deeper level How about learning it at a deeper level? Come with me and learn why programming languages exist, how the most famous ones compare and how we know what our computers can and cannot do.
+What you should already know I wrote this from a presumption that you know no programming or know very little, but that you know your maths somewhat well, you should know what a variable is, and your basic arithmetic. If you know programming read on as this might be enlightening for you too.
+" />
+<meta property="og:url" content="http://localhost:1313/posts/programming-from-first-principles/" />
+<meta property="og:site_name" content="Xadaemon&#39;s blog" />
+
+  <meta property="og:image" content="http://localhost:1313/og-image.png">
+
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="627">
+
+
+  <meta property="article:published_time" content="2025-10-27 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+
+
+<div class="container center">
+
+  <header class="header">
+  <div class="header__inner">
+    <div class="header__logo">
+      <a href="/">
+  <div class="logo">
+    Xmn blog
+  </div>
+</a>
+
+    </div>
+    
+      <ul class="menu menu--mobile">
+  <li class="menu__trigger">Menu&nbsp;▾</li>
+  <li>
+    <ul class="menu__dropdown">
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+    </ul>
+  </li>
+</ul>
+
+    
+    
+  </div>
+  
+    <nav class="navigation-menu">
+  <ul class="navigation-menu__inner menu--desktop">
+    
+      
+        
+          <li><a href="/about" >About</a></li>
+        
+      
+      
+    
+  </ul>
+</nav>
+
+  
+</header>
+
+
+  <div class="content">
+    
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://localhost:1313/posts/programming-from-first-principles/">Programming from first principles</a>
+  </h1>
+  <div class="post-meta"><time class="post-date">2025-10-27&nbsp;[Updated:  2025-10-27]</time></div>
+
+  
+    <span class="post-tags">
+      
+      #<a href="http://localhost:1313/tags/first-principles/">First Principles</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/fundamentals/">Fundamentals</a>&nbsp;
+      
+      #<a href="http://localhost:1313/tags/programming/">Programming</a>&nbsp;
+      
+    </span>
+  
+  
+
+
+  
+
+  <div class="post-content"><div>
+        <h1 id="so-you-want-to-learn-programming-on-a-deeper-level">So you want to learn programming on a deeper level<a href="#so-you-want-to-learn-programming-on-a-deeper-level" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>How about learning it at a deeper level? Come with me and learn why programming languages exist, how the most famous ones compare
+and how we know what our computers can and cannot do.</p>
+<h1 id="what-you-should-already-know">What you should already know<a href="#what-you-should-already-know" class="hanchor" ariaLabel="Anchor">#</a> </h1>
+<p>I wrote this from a presumption that you know no programming or know very little, but that you know your maths somewhat well,
+you should know what a variable is, and your basic arithmetic. If you know programming read on as this might be enlightening
+for you too.</p>
+<h2 id="1---computing-and-turing-machines">1 - Computing and turing machines<a href="#1---computing-and-turing-machines" class="hanchor" ariaLabel="Anchor">#</a> </h2>
+<p>In this post I will explain turing machines, how they work and how it relates to programming</p>
+<p>First let&rsquo;s explain what a CPU fundamentally does and how, let&rsquo;s imagine our CPU, it has boxes on it&rsquo;s &ldquo;desk&rdquo; called registers they
+can hold a number each, and it has access to a much larger number of boxes called main memory, but if it wants to access the number
+in one of these boxes it has to ask for the box, and copy the number to one of the boxes in the desk, our cpu speaks a language
+that we call the instruction set. Examples of this are things like the ARM cpu in your phone and the intel/amd x86_64 cpu in your pc
+this language they speak is made up of numbers that have meaning assigned to them, i.e if we decide that our cpu understands the
+number 80 as telling it to move a value from box A to box B.</p>
+<p>Now lets look at a turing machine, in it&rsquo;s simplest form the machine has a tape of infinite length, a head and an alphabet, the head
+will look at a cell in the tape and it can set a new value that we call the state and move the tape left or right or halt the machine,
+can you see the similarity?</p>
+<p>Let&rsquo;s play pen and paper turing machine to cement the ideas.</p>
+<p>First the alphabet of our machine</p>
+<table>
+  <thead>
+      <tr>
+          <th>Symbol</th>
+          <th>Instruction</th>
+          <th>Next state</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>P0</td>
+          <td>Puts <code>0</code> moves right</td>
+          <td>R0</td>
+      </tr>
+      <tr>
+          <td>R0</td>
+          <td>Move the tape right</td>
+          <td>P1</td>
+      </tr>
+      <tr>
+          <td>P1</td>
+          <td>Puts <code>1</code> moves right</td>
+          <td>R1</td>
+      </tr>
+      <tr>
+          <td>R1</td>
+          <td>Same as R0</td>
+          <td>P0</td>
+      </tr>
+  </tbody>
+</table>
+<p>If you then initialize your machine with it&rsquo;s state preset to <code>R0</code> you will have an infinite string of 0 &lt;blank&gt; 1 &hellip; repeating
+take a piece of paper and validate that this holds, a machine capable of storing, reading values and changing it&rsquo;s internal state is
+said to be turing complete.</p>
+<p>A processor is little more than a turing machine with a large alphabet and a more complex storage scheme.</p>
+
+      </div></div>
+
+  
+    
+<div class="pagination">
+  <div class="pagination__title">
+    <span class="pagination__title-h">Read other posts</span>
+    <hr />
+  </div>
+  <div class="pagination__buttons">
+    
+    
+    
+      <a href="http://localhost:1313/posts/what-is-memory/" class="button inline next">
+         [<span class="button__text">What Is Memory</span>] &gt;
+      </a>
+    
+  </div>
+</div>
+
+
+  
+
+  
+    
+
+  
+</article>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <div class="copyright">
+        <span>© 2025 Powered by <a href="https://gohugo.io">Hugo</a></span>
+    
+      <span>:: <a href="https://github.com/panr/hugo-theme-terminal" target="_blank">Theme</a> made by <a href="https://github.com/panr" target="_blank">panr</a></span>
+      </div>
+  </div>
+</footer>
+
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+
+
+
+  
+</div>
+
+</body>
+</html>

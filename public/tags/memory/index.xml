@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Memory on Xadaemon&#39;s blog</title>
-    <link>https://xadaemon.srht.site/tags/memory/</link>
+    <link>http://localhost:1313/tags/memory/</link>
     <description>Recent content in Memory on Xadaemon&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Sat, 05 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://xadaemon.srht.site/tags/memory/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/memory/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>What Is Memory</title>
-      <link>https://xadaemon.srht.site/posts/what-is-memory/</link>
+      <link>http://localhost:1313/posts/what-is-memory/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://xadaemon.srht.site/posts/what-is-memory/</guid>
+      <guid>http://localhost:1313/posts/what-is-memory/</guid>
       <description>&lt;h1 id=&#34;memory-and-pointers-for-the-curious-coder&#34;&gt;Memory and pointers for the curious coder…&lt;/h1&gt;&#xA;&lt;h2 id=&#34;memory-what-is-it-really&#34;&gt;Memory, what is it really?&lt;/h2&gt;&#xA;&lt;p&gt;Most programmers have a view of memory as a list of “things” these “things” might be whatever you are working with in your code, and for most purposes that view is fine, but if you want to really understand what is all those terms read on!&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-i-assume-you-know&#34;&gt;What I assume you know&lt;/h2&gt;&#xA;&lt;p&gt;This article will assume you know programming, more than a simple hello world, but not much beyond flow control and arrays.&lt;/p&gt;</description>
     </item>
   </channel>

@@ -2,17 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Xadaemon&#39;s blog</title>
-    <link>https://xadaemon.srht.site/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Posts on Xadaemon&#39;s blog</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 05 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://xadaemon.srht.site/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Programming from first principles</title>
+      <link>http://localhost:1313/posts/programming-from-first-principles/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/programming-from-first-principles/</guid>
+      <description>&lt;h1 id=&#34;so-you-want-to-learn-programming-on-a-deeper-level&#34;&gt;So you want to learn programming on a deeper level&lt;/h1&gt;&#xA;&lt;p&gt;How about learning it at a deeper level? Come with me and learn why programming languages exist, how the most famous ones compare&#xA;and how we know what our computers can and cannot do.&lt;/p&gt;&#xA;&lt;h1 id=&#34;what-you-should-already-know&#34;&gt;What you should already know&lt;/h1&gt;&#xA;&lt;p&gt;I wrote this from a presumption that you know no programming or know very little, but that you know your maths somewhat well,&#xA;you should know what a variable is, and your basic arithmetic. If you know programming read on as this might be enlightening&#xA;for you too.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>What Is Memory</title>
-      <link>https://xadaemon.srht.site/posts/what-is-memory/</link>
+      <link>http://localhost:1313/posts/what-is-memory/</link>
       <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate>
-      <guid>https://xadaemon.srht.site/posts/what-is-memory/</guid>
+      <guid>http://localhost:1313/posts/what-is-memory/</guid>
       <description>&lt;h1 id=&#34;memory-and-pointers-for-the-curious-coder&#34;&gt;Memory and pointers for the curious coder…&lt;/h1&gt;&#xA;&lt;h2 id=&#34;memory-what-is-it-really&#34;&gt;Memory, what is it really?&lt;/h2&gt;&#xA;&lt;p&gt;Most programmers have a view of memory as a list of “things” these “things” might be whatever you are working with in your code, and for most purposes that view is fine, but if you want to really understand what is all those terms read on!&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-i-assume-you-know&#34;&gt;What I assume you know&lt;/h2&gt;&#xA;&lt;p&gt;This article will assume you know programming, more than a simple hello world, but not much beyond flow control and arrays.&lt;/p&gt;</description>
     </item>
   </channel>

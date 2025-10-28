@@ -47,3 +47,5 @@ take a piece of paper and validate that this holds, a machine capable of storing
 said to be turing complete.
 
 A processor is little more than a turing machine with a large alphabet and a more complex storage scheme.
+
+A processor is

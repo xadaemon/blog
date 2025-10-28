@@ -89,7 +89,7 @@ minuteReadingTime = "min read"
 words = "words"
 
 [languages.en.params.logo]
-logoText = "Xmn blog"
+logoText = "Coder Cat House"
 logoHomeLink = "/"
 
 [languages.en.menu]

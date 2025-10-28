@@ -1,5 +1,5 @@
 #theme = "terminal"          # UNCOMMENT THIS LINE
-baseURL = "https://xadaemon.github.io"
+baseURL = "https://blog.ccho.eu"
 baseurl = "/"
 languageCode = "en-us"
 # Add it only if you keep the theme in the `themes` directory.

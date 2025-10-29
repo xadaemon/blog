@@ -89,7 +89,7 @@ minuteReadingTime = "min read"
 words = "words"
 
 [languages.en.params.logo]
-logoText = "Coder Cat House"
+logoText = "Code Clearing House"
 logoHomeLink = "/"
 
 [languages.en.menu]
